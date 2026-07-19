@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {
+  Box,Button,Stack,TextField,Typography,Paper,
+} from "@mui/material";
+
+
 function Login() {
   const navigate = useNavigate();
 
@@ -22,7 +27,6 @@ function Login() {
       return;
     }
 
-
     if (password.trim() === "") {
       alert("Mật khẩu không được để trống");
       return;
@@ -33,33 +37,36 @@ function Login() {
       return;
     }
 
-   
     console.log("Email:", email);
     console.log("Password:", password);
 
     navigate("/Home");
   };
 
-  return (
-    <div>
-      <h1>Login Page</h1>
+return (
+    <Box
+      sx={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundcolor: "#f4f4f4",
+      }}
+    >
+      <Paper sx={{ p: 4, width: 400 }}>
+        <Typography variant="h4" align="center" mb={3}>Login</Typography>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-        </div>
+        <Stack spacing={2}>
+          <TextField label="Email" fullWidth value={email} onChange={(e) => setEmail(e.target.value)}/>
 
-        <br />
+          <TextField label="Password" type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-        <div>
-          <input type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        </div>
-
-        <br />
-
-        <button type="submit">Login</button>
-      </form>
-    </div>
+          <Button variant="contained" onClick={handleSubmit}>
+            Login
+          </Button>
+        </Stack>
+      </Paper>
+    </Box>
   );
 }
 

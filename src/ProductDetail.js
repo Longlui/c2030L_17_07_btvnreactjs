@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { Typography, Button } from "@mui/material";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -20,32 +21,33 @@ function ProductDetail() {
   }, [id]);
 
   return (
-    <div>
-      <h1>Product Detail page</h1>
+  <div>
+    <Typography variant="h4">Product Detail Page</Typography>
 
-      <p>Product id: {id}</p>
+    <Typography variant="body1">Product ID: {id}</Typography>
 
-      {product && (
-        <div>
-          <p>Title: {product.title}</p>
-          <p>Category: {product.category}</p>
-          <p>Price: ${product.price}</p>
+    <br />
 
-          <img
-            src={product.image}
-            alt={product.title}
-            width="150"
-          />
-        </div>
-      )}
+    {product && (
+      <div>
+        <Typography variant="h6">Title: {product.title}</Typography>
 
-      <br />
+        <Typography variant="body1">Category: {product.category}</Typography>
 
-      <Link to="/products">
-        Quay lại danh sách
-      </Link>
-    </div>
-  );
+        <Typography variant="body1">Price: ${product.price}</Typography>
+
+        <br />
+
+        <img src={product.image} alt={product.title} width="150"
+        />
+      </div>
+    )}
+
+    <br />
+
+    <Button component={Link} to="/products" variant="contained">Quay lại danh sách</Button>
+  </div>
+);
 }
 
 export default ProductDetail;

@@ -1,5 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import {
+  Typography,Grid
+} from "@mui/material";
+
 import { Link } from "react-router-dom";
 
 function ProductList() {
@@ -17,26 +22,26 @@ function ProductList() {
     fetchData();
   }, []);
 
-  return (
-    <div>
-      <h1>Product List</h1>
+ return (
+  <div>
+    <Typography variant="h4" sx={{ mb: 2 }}>Product List</Typography>
 
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            
-            <p>Title: {product.title}</p>
-            <p>Category: {product.category}</p>
-            <p>Price: ${product.price}</p>
+    <Grid container spacing={2}>
+      {products.map((product) => (
+        <Grid item xs={12} sm={6} md={4} key={product.id}>
 
-            <Link to={`/products/${product.id}`}>
-              Xem chi tiết sản phẩm
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+          <Typography variant="h6">{product.title}</Typography>
+
+          <Typography variant="body1">Category: {product.category}</Typography>
+
+          <Typography variant="body1">Price: ${product.price}</Typography>
+
+          <Link to={`/products/${product.id}`}>Xem chi tiết sản phẩm</Link>
+
+        </Grid>
+      ))}
+    </Grid>
+  </div>
+);
 }
-
 export default ProductList;

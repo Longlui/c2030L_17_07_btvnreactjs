@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
+import { Typography, Button } from "@mui/material";
 
 function Home() {
   return (
     <div>
-      <h1>Home Page</h1>
+      <Typography variant="h4">Home Page</Typography>
 
-      <Link to="/products">
-        <button>Danh sách sản phẩm</button>
-      </Link>
+      <Typography variant="body1">Chào mừng bạn đến với cửa hàng</Typography>
+      <br />
 
+      <Button component={Link} to="/products" variant="contained" color="primary"> Danh sách sản phẩm</Button>
     </div>
   );
 }
